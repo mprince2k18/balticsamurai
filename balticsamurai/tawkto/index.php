@@ -120,6 +120,8 @@ $i = 1;
                             <?php echo $contact['city']; ?>
                         </td>
                         <td>
+
+                        <?php if($tawkto->check_disputed($contact['id']) == 'Dispute') {?>
                             <!-- Button trigger modal -->
                                 <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#exampleModal<?php echo $contact['id']; ?>">
                                     Dispute
@@ -134,15 +136,46 @@ $i = 1;
                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                     </div>
                                     <div class="modal-body">
-                                        ...
+
+                                        <form action="reason.php" method="POST">
+                                            <div class="mb-3">
+                                                <input type="hidden" name="tawkto_id" value="<?php echo $contact['id']; ?>">
+                                                <label for="exampleInputEmail1" class="form-label">Write down the dispute reason:</label>
+                                                <textarea name="reason" class="form-control" id="exampleInputEmail1" require></textarea>
+                                            </div>
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                        <button type="button" class="btn btn-primary">Save</button>
+                                        <button type="submit" class="btn btn-primary">Save</button>
+                                        </form>
                                     </div>
                                     </div>
                                 </div>
                                 </div>
+                        <?php } else { ?>
+                                <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#Disputed<?php echo $contact['id']; ?>">
+                                    Disputed
+                                </button>
+
+                                <!-- Modal -->
+                                <div class="modal fade" id="Disputed<?php echo $contact['id']; ?>" tabindex="-1" aria-labelledby="exampleModalLabel<?php echo $contact['id']; ?>" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel"><?php echo $contact['name']; ?></h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <p>
+                                            <?php echo $contact['reason']; ?>
+                                        </p>
+                                    </div>
+                                 
+                                    </div>
+                                </div>
+                                </div>
+                        <?php } ?>
+
                         </td>
                     </tr>
                     <?php } ?>

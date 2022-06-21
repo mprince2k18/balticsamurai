@@ -42,4 +42,26 @@ class Tawkto
         }
     }
 
+    /**
+     * Check disputed
+     */
+
+    /**
+     * Check Disputed in mysql
+     */
+
+    public function check_disputed($id)
+    {
+        $dispute = new TawktoController;
+        $result = $dispute->get_disputed($id);
+        if($result)
+        {
+            return 'Disputed';
+        }
+        else
+        {
+            return 'Dispute';
+        }
+    }
+
 }

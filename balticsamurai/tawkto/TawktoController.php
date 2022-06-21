@@ -63,4 +63,43 @@ class TawktoController
         }
     }
 
+    /**
+     * Update the contact
+     * @param  int $id
+     */
+    public function update($inputData)
+    {
+        $id = $inputData['tawkto_id'];
+        $reason = $inputData['reason'];
+
+        $disputeQuery = "UPDATE tawkto_contacts SET reason = '$reason' WHERE id = $id";
+        $result = $this->conn->query($disputeQuery);
+        if($result){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    /**
+     * get_disputed
+     */
+    public function get_disputed($id)
+    {
+        // check if the contact has reason
+        $disputeQuery = "SELECT * FROM tawkto_contacts WHERE id = $id";
+        $result = $this->conn->query($disputeQuery);
+        if($result){
+            $row = $result->fetch_assoc();
+            if($row['reason'] == ''){
+                return false;
+            }else{
+                return true;
+            }
+        }else{
+            return false;
+        }
+        
+    }
+
 }

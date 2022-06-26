@@ -3,7 +3,7 @@
 session_start();
 require 'Helper.php';
 
-$tawkto = new Tawkto;
+$direct_mails = new DirectMails;
 
 $i = 1;
 
@@ -14,7 +14,7 @@ $i = 1;
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Twilio Calling Logs</title>
+    <title>DirectMail Leads</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://rawgit.com/enbifa/jquery.skeleton.loader/master/example/css/jquery.skeleton.css">
     <link href="https://cdn.jsdelivr.net/gh/mobius1/selectr@latest/dist/selectr.min.css" rel="stylesheet" type="text/css">
@@ -26,14 +26,14 @@ $i = 1;
 
         <div class="row">
             <div class="col-md-12">
-                <h1 class="text-center">Tawkto Contacts</h1>
+                <h1 class="text-center">DirectMail Leads</h1>
             </div>
 
             <div class="col-md-12">
                 
                 <!-- Button trigger modal -->
                 <button type="button" class="btn btn-primary text-end" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                    Add New Contacts
+                    Add New Leads
                 </button>
 
                 <!-- Modal -->
@@ -41,7 +41,7 @@ $i = 1;
                 <div class="modal-dialog  modal-dialog-centered">
                     <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Add New Tawto Contact</h5>
+                        <h5 class="modal-title" id="exampleModalLabel">Add New Leads</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
@@ -56,16 +56,6 @@ $i = 1;
                             <div class="mb-3">
                                 <label for="email" class="form-label">Email Address</label>
                                 <input type="email" placeholder="Email Address" class="form-control" name="email" id="email">
-                            </div>
-
-                            <div class="mb-3">
-                                <label for="country" class="form-label">Country Name</label>
-                                <input type="text" placeholder="Country Name" class="form-control" name="country" id="country">
-                            </div>
-
-                            <div class="mb-3">
-                                <label for="city" class="form-label">City Name</label>
-                                <input type="text" placeholder="City Name" class="form-control" name="city" id="city">
                             </div>
 
                             <div class="mb-3">
@@ -101,14 +91,12 @@ $i = 1;
                     <th scope="col">#</th>
                     <th scope="col">Name</th>
                     <th scope="col">Email</th>
-                    <th scope="col">Country</th>
-                    <th scope="col">City</th>
                     <th scope="col">Data & Time</th>
                     <th scope="col">Action</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <?php foreach($tawkto->allContacts() as $contact) { ?>
+                    <?php foreach($direct_mails->allContacts() as $contact) { ?>
                     <tr class="loader">
                         <td>
                             <?php echo $i++; ?>
@@ -120,17 +108,11 @@ $i = 1;
                             <?php echo $contact['email']; ?>
                         </td>
                         <td>
-                            <?php echo $contact['country']; ?>
-                        </td>
-                        <td>
-                            <?php echo $contact['city']; ?>
-                        </td>
-                        <td>
                             <?php echo $contact['date']; ?>
                         </td>
                         <td>
 
-                        <?php if($tawkto->check_disputed($contact['id']) == 'Dispute') {?>
+                        <?php if($direct_mails->check_disputed($contact['id']) == 'Dispute') {?>
                             <!-- Button trigger modal -->
                                 <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#exampleModal<?php echo $contact['id']; ?>">
                                     Dispute
@@ -148,7 +130,7 @@ $i = 1;
 
                                         <form action="reason.php" method="POST">
                                             <div class="mb-3">
-                                                <input type="hidden" name="tawkto_id" value="<?php echo $contact['id']; ?>">
+                                                <input type="hidden" name="directmail_id" value="<?php echo $contact['id']; ?>">
                                                 <label for="exampleInputEmail1" class="form-label">Write down the dispute reason:</label>
                                                 <textarea name="reason" class="form-control" id="exampleInputEmail1" require></textarea>
                                             </div>

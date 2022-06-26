@@ -1,6 +1,6 @@
 <?php
 
-class TawktoController
+class DirectMailsController
 {
 
     /**
@@ -21,11 +21,9 @@ class TawktoController
     {
         $name = $inputData['name'];
         $email = $inputData['email'];
-        $country = $inputData['country'];
-        $city = $inputData['city'];
         $date = $inputData['date'];
 
-        $disputeQuery = "INSERT INTO tawkto_contacts (name,email,country,city, date) VALUES ('$name','$email', '$country', '$city', '$date')";
+        $disputeQuery = "INSERT INTO directmails (name, email, date) VALUES ('$name','$email', '$date')";
         $result = $this->conn->query($disputeQuery);
         if($result){
             return true;
@@ -40,7 +38,7 @@ class TawktoController
      */
     public function getAll()
     {
-        $disputeQuery = "SELECT * FROM tawkto_contacts";
+        $disputeQuery = "SELECT * FROM directmails";
         $result = $this->conn->query($disputeQuery);
         if($result){
             return $result;
@@ -55,7 +53,7 @@ class TawktoController
      */
     public function destroy($id)
     {
-        $disputeQuery = "DELETE FROM tawkto_contacts WHERE id = $id";
+        $disputeQuery = "DELETE FROM directmails WHERE id = $id";
         $result = $this->conn->query($disputeQuery);
         if($result){
             return true;
@@ -70,10 +68,10 @@ class TawktoController
      */
     public function update($inputData)
     {
-        $id = $inputData['tawkto_id'];
+        $id = $inputData['directmail_id'];
         $reason = $inputData['reason'];
 
-        $disputeQuery = "UPDATE tawkto_contacts SET reason = '$reason' WHERE id = $id";
+        $disputeQuery = "UPDATE directmails SET reason = '$reason' WHERE id = $id";
         $result = $this->conn->query($disputeQuery);
         if($result){
             return true;
@@ -88,11 +86,12 @@ class TawktoController
     public function get_disputed($id)
     {
         // check if the contact has reason
-        $disputeQuery = "SELECT * FROM tawkto_contacts WHERE id = $id";
+        $disputeQuery = "SELECT * FROM directmails WHERE id = $id";
         $result = $this->conn->query($disputeQuery);
         if($result){
             $row = $result->fetch_assoc();
-            if($row['reason'] == ''){
+            if($row['reason'] == '')
+            {
                 return false;
             }else{
                 return true;

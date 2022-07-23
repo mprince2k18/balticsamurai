@@ -2,16 +2,16 @@
 
 session_start();
 require '../db.php';
-include('GoogleBusniessController.php');
+include('Controller.php');
 
 $db = new DatabaseConnection;
 
 $inputData = [
-    'google_business_id' => mysqli_real_escape_string($db->conn, $_POST['google_business_id']),
+    'directmail_id' => mysqli_real_escape_string($db->conn, $_POST['directmail_id']),
     'reason' => mysqli_real_escape_string($db->conn, $_POST['reason'])
 ];
 
-$dispute = new GoogleBusniessController;
+$dispute = new Controller;
 $result = $dispute->update($inputData);
 
 if($result)

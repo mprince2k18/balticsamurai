@@ -1,16 +1,16 @@
 <?php
 
 require '../db.php';
-include('DirectMailsController.php');
+include('Controller.php');
 
-class DirectMails
+class Information
 {
     /**
      * Get all the contacts getAll()
      */
     public function allContacts()
     {
-        $contacts = new DirectMailsController;
+        $contacts = new Controller;
         $result = $contacts->getAll();
 
         if($result){
@@ -25,7 +25,7 @@ class DirectMails
      */
     public function destroy($id)
     {
-        $contacts = new DirectMailsController;
+        $contacts = new Controller;
         $result = $contacts->destroy($id);
 
         if($result)
@@ -52,7 +52,7 @@ class DirectMails
 
     public function check_disputed($id)
     {
-        $dispute = new DirectMailsController;
+        $dispute = new Controller;
         $result = $dispute->get_disputed($id);
         if($result)
         {

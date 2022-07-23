@@ -2,23 +2,26 @@
 
 session_start();
 require '../db.php';
-include('GoogleBusniessController.php');
+include('Controller.php');
 
 $db = new DatabaseConnection;
 
 $inputData = [
     'name' => mysqli_real_escape_string($db->conn, $_POST['name']),
     'email' => mysqli_real_escape_string($db->conn, $_POST['email']),
-    'phone' => mysqli_real_escape_string($db->conn, $_POST['phone']),
     'date' => mysqli_real_escape_string($db->conn, $_POST['date']),
+    'source' => mysqli_real_escape_string($db->conn, $_POST['source']),
+    'phone' => mysqli_real_escape_string($db->conn, $_POST['phone']),
+    'country' => mysqli_real_escape_string($db->conn, $_POST['country']),
+    'city' => mysqli_real_escape_string($db->conn, $_POST['city']),
 ];
 
-$dispute = new GoogleBusniessController;
+$dispute = new Controller;
 $result = $dispute->create($inputData);
 
 if($result)
 {
-    $_SESSION['message'] = "Lead Saved Successfully";
+    $_SESSION['message'] = "Contact Saved Successfully";
     header("Location: index.php");
     exit(0);
 }

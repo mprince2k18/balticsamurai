@@ -1,6 +1,6 @@
 <?php
 
-class TawktoController
+class Controller
 {
 
     /**
@@ -21,11 +21,13 @@ class TawktoController
     {
         $name = $inputData['name'];
         $email = $inputData['email'];
+        $date = $inputData['date'];
+        $source = $inputData['source'];
+        $phone = $inputData['phone'];
         $country = $inputData['country'];
         $city = $inputData['city'];
-        $date = $inputData['date'];
 
-        $disputeQuery = "INSERT INTO tawkto_contacts (name,email,country,city, date) VALUES ('$name','$email', '$country', '$city', '$date')";
+        $disputeQuery = "INSERT INTO informations (name, email, date, source, phone, country, city) VALUES ('$name','$email', '$date', '$source', '$phone', '$country', '$city')";
         $result = $this->conn->query($disputeQuery);
         if($result){
             return true;
@@ -40,7 +42,7 @@ class TawktoController
      */
     public function getAll()
     {
-        $disputeQuery = "SELECT * FROM tawkto_contacts";
+        $disputeQuery = "SELECT * FROM informations";
         $result = $this->conn->query($disputeQuery);
         if($result){
             return $result;
@@ -55,7 +57,7 @@ class TawktoController
      */
     public function destroy($id)
     {
-        $disputeQuery = "DELETE FROM tawkto_contacts WHERE id = $id";
+        $disputeQuery = "DELETE FROM informations WHERE id = $id";
         $result = $this->conn->query($disputeQuery);
         if($result){
             return true;
@@ -70,10 +72,10 @@ class TawktoController
      */
     public function update($inputData)
     {
-        $id = $inputData['tawkto_id'];
+        $id = $inputData['directmail_id'];
         $reason = $inputData['reason'];
 
-        $disputeQuery = "UPDATE tawkto_contacts SET reason = '$reason' WHERE id = $id";
+        $disputeQuery = "UPDATE informations SET reason = '$reason' WHERE id = $id";
         $result = $this->conn->query($disputeQuery);
         if($result){
             return true;
@@ -88,11 +90,12 @@ class TawktoController
     public function get_disputed($id)
     {
         // check if the contact has reason
-        $disputeQuery = "SELECT * FROM tawkto_contacts WHERE id = $id";
+        $disputeQuery = "SELECT * FROM informations WHERE id = $id";
         $result = $this->conn->query($disputeQuery);
         if($result){
             $row = $result->fetch_assoc();
-            if($row['reason'] == ''){
+            if($row['reason'] == '')
+            {
                 return false;
             }else{
                 return true;
@@ -101,6 +104,24 @@ class TawktoController
             return false;
         }
         
+    }
+
+    /**
+     * Search
+     */
+    public function search($inputData)
+    {
+        $date = $inputData['date'];
+        $source = $inputData['source'];
+        
+        // multiple search
+        $disputeQuery = "SELECT * FROM informations WHERE source LIKE '%$source%'";
+        $result = $this->conn->query($disputeQuery);
+        if($result){
+            return $result->fetch_all();
+        }else{
+            return false;
+        }
     }
 
 }

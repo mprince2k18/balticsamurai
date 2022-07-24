@@ -48,18 +48,18 @@ $i = 1;
                             <div class="mb-3">
                                 <label for="source" class="form-label">Source</label>
                                 <select class="form-select" aria-label="Select Source" name="source" onchange="Source(value)">
-                                    <option selected>Select Source</option>
-                                    <option value="Tawkto">Tawkto</option>
-                                    <option value="Twilio">Twilio</option>
-                                    <option value="DirectMails">DirectMails</option>
-                                    <option value="GB">Google Business</option>
+                                    <option selected value="">Select Source</option>
+                                    <option value="Tawkto" <?php if(isset($_SESSION['source'])) { echo $_SESSION['source'] == "Tawkto" ? 'selected' : null; } ?>>Tawkto</option>
+                                    <option value="Twilio" <?php if(isset($_SESSION['source'])) { echo $_SESSION['source'] == "Twilio" ? 'selected' : null; } ?>>Twilio</option>
+                                    <option value="DirectMails" <?php if(isset($_SESSION['source'])) { echo $_SESSION['source'] == "DirectMails" ? 'selected' : null; } ?>>DirectMails</option>
+                                    <option value="GB" <?php if(isset($_SESSION['source'])) { echo $_SESSION['source'] == "GB" ? 'selected' : null; } ?>>Google Business</option>
                                 </select>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="mb-3">
                                 <label for="date" class="form-label">Date & Time</label>
-                                <input type="datetime-local" class="form-control" name="date" id="date">
+                                <input type="datetime-local" class="form-control" name="date" id="date" value="<?php if(isset($_SESSION['date'])) { $_SESSION['date'] != null ? $_SESSION['date'] : null; } ?>">
                             </div>
                         </div>
                     </div>
@@ -68,6 +68,12 @@ $i = 1;
                         Search
                     </button>
                 </form>
+
+                <div class="mt-4">
+                    <p>Searching for : <?php 
+                        if(isset($_SESSION['source'])) { echo $_SESSION['source']; }
+                    ?> and <?php if(isset($_SESSION['date'])) { echo $_SESSION['date']; } ?></p>
+                </div>
 
 
                 <!-- Modal -->
@@ -89,7 +95,7 @@ $i = 1;
                                         <select class="form-select" aria-label="Select Source" name="source"
                                             onchange="Source(value)">
                                             <option selected>Select Source</option>
-                                            <option value="Tawkto">Tawkto</option>
+                                            <option value="Tawkto" >Tawkto</option>
                                             <option value="Twilio">Twilio</option>
                                             <option value="DirectMails">DirectMails</option>
                                             <option value="GB">Google Business</option>
@@ -152,7 +158,7 @@ $i = 1;
             <?php
                 if(isset($_SESSION['message']))
                 {
-                    echo "<h5>".$_SESSION['message']."</h5>";
+                    echo "<h5 class='mt-4'>".$_SESSION['message']."</h5>";
                     unset($_SESSION['message']);
                 }
             ?>
@@ -229,7 +235,7 @@ $i = 1;
                         <td>
                             <?php
                                 if (isset($contact[7])) {
-                                    echo $contact[7];
+                                    date('d-m-Y H:i:s', strtotime($contact[7]));
                                 }else {
                                     echo "N/A";
                                 }

@@ -49,7 +49,7 @@ $i = 1;
                             <div class="mb-3">
                                 <label for="source" class="form-label">Source</label>
                                 <select class="form-select" aria-label="Select Source" name="source" onchange="Source(value)">
-                                    <option selected>Select Source</option>
+                                    <option value="" selected>Select Source</option>
                                     <option value="Tawkto">Tawkto</option>
                                     <option value="Twilio">Twilio</option>
                                     <option value="DirectMails">DirectMails</option>
@@ -153,7 +153,7 @@ $i = 1;
             <?php
                 if(isset($_SESSION['message']))
                 {
-                    echo "<h5>".$_SESSION['message']."</h5>";
+                    echo "<h5 class='mt-4'>".$_SESSION['message']."</h5>";
                     unset($_SESSION['message']);
                 }
             ?>
@@ -235,7 +235,7 @@ $i = 1;
                         <td>
                             <?php
                                 if (isset($contact['date'])) {
-                                    echo $contact['date'];
+                                    echo date('d-m-Y H:i:s', strtotime($contact['date']));
                                 }else {
                                     echo "N/A";
                                 }

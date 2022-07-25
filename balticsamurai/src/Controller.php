@@ -115,7 +115,7 @@ class Controller
         $source = $inputData['source'];
         
         // multiple search
-        $disputeQuery = "SELECT * FROM informations WHERE source LIKE '%$source%'";
+        $disputeQuery = "SELECT * FROM informations WHERE source LIKE '%$source%'" . " AND date LIKE '%$date%'";
         $result = $this->conn->query($disputeQuery);
         if($result){
             return $result->fetch_all();

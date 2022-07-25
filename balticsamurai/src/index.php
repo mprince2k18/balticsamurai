@@ -60,7 +60,7 @@ $i = 1;
                         <div class="col-md-6">
                             <div class="mb-3">
                                 <label for="date" class="form-label">Date & Time</label>
-                                <input type="datetime-local" class="form-control" name="date" id="date">
+                                <input type="date" class="form-control" name="date" id="date">
                             </div>
                         </div>
                     </div>
@@ -130,8 +130,8 @@ $i = 1;
                                         </div>
 
                                         <div class="mb-3">
-                                            <label for="date" class="form-label">Date & Time</label>
-                                            <input type="datetime-local" class="form-control" name="date" id="date">
+                                            <label for="date" class="form-label">Date</label>
+                                            <input type="date" class="form-control" name="date" id="date">
                                         </div>
 
                                     </div>

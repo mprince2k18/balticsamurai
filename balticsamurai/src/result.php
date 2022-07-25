@@ -59,7 +59,7 @@ $i = 1;
                         <div class="col-md-6">
                             <div class="mb-3">
                                 <label for="date" class="form-label">Date & Time</label>
-                                <input type="datetime-local" class="form-control" name="date" id="date" value="<?php if(isset($_SESSION['date'])) { $_SESSION['date'] != null ? $_SESSION['date'] : null; } ?>">
+                                <input type="date" class="form-control" name="date" id="date" value="<?php if(isset($_SESSION['date'])) { $_SESSION['date'] != null ? $_SESSION['date'] : null; } ?>">
                             </div>
                         </div>
                     </div>
@@ -136,7 +136,7 @@ $i = 1;
 
                                         <div class="mb-3">
                                             <label for="date" class="form-label">Date & Time</label>
-                                            <input type="datetime-local" class="form-control" name="date" id="date">
+                                            <input type="date" class="form-control" name="date" id="date">
                                         </div>
 
                                     </div>

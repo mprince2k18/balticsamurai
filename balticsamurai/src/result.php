@@ -30,7 +30,9 @@ $i = 1;
 
         <div class="row">
             <div class="col-md-12">
-                <h1 class="text-center">Leads</h1>
+                <a href="index.php">
+                    <h1 class="text-center">Leads</h1>
+                </a>
             </div>
 
             <div class="col-md-12">

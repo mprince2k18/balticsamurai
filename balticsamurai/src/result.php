@@ -170,11 +170,12 @@ $i = 1;
                         <th scope="col">#</th>
                         <th scope="col">Name</th>
                         <th scope="col">Email</th>
-                        <th scope="col">Phone</th>
                         <th scope="col">Country</th>
                         <th scope="col">City</th>
+                        <th scope="col">Phone</th>
                         <th scope="col">Source</th>
-                        <th scope="col">Data & Time</th>
+                        <th scope="col">Date</th>
+                        <th scope="col">Reason</th>
                         <th scope="col">Action</th>
                     </tr>
                 </thead>
@@ -225,6 +226,15 @@ $i = 1;
                         </td>
                         <td>
                             <?php
+                                if (isset($contact[5])) {
+                                    echo $contact[5];
+                                }else {
+                                    echo "N/A";
+                                }
+                            ?>
+                        </td>
+                        <td>
+                            <?php
                                 if (isset($contact[6])) {
                                     echo $contact[6];
                                 }else {
@@ -235,7 +245,7 @@ $i = 1;
                         <td>
                             <?php
                                 if (isset($contact[7])) {
-                                    date('d-m-Y H:i:s', strtotime($contact[7]));
+                                    echo $contact[7];
                                 }else {
                                     echo "N/A";
                                 }
@@ -266,7 +276,7 @@ $i = 1;
                                     <div class="modal-content">
                                         <div class="modal-header">
                                             <h5 class="modal-title" id="exampleModalLabel">Dispute
-                                                <?php echo $contact['name']; ?></h5>
+                                                <?php echo $contact[1]; ?></h5>
                                             <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                 aria-label="Close"></button>
                                         </div>
@@ -304,13 +314,13 @@ $i = 1;
                                     <div class="modal-content">
                                         <div class="modal-header">
                                             <h5 class="modal-title" id="exampleModalLabel">
-                                                <?php echo $contact['name']; ?></h5>
+                                                <?php echo $contact[1]; ?></h5>
                                             <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                 aria-label="Close"></button>
                                         </div>
                                         <div class="modal-body">
                                             <p>
-                                                <?php echo $contact['reason']; ?>
+                                                <?php echo $contact[8]; ?>
                                             </p>
                                         </div>
 

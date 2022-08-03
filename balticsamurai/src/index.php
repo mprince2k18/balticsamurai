@@ -47,7 +47,7 @@ $i = 1;
                 
                 <form action="search.php" method="GET">
                     <div class="row mt-4">
-                        <div class="col-md-6">
+                        <div class="col-md-4">
                             <div class="mb-3">
                                 <label for="source" class="form-label">Source</label>
                                 <select class="form-select" aria-label="Select Source" name="source" onchange="Source(value)">
@@ -59,10 +59,16 @@ $i = 1;
                                 </select>
                             </div>
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-4">
                             <div class="mb-3">
-                                <label for="date" class="form-label">Date & Time</label>
+                                <label for="date" class="form-label">Start Date</label>
                                 <input type="date" class="form-control" name="date" id="date">
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="mb-3">
+                                <label for="end_date" class="form-label">End Date</label>
+                                <input type="date" class="form-control" name="end_date" id="end_date">
                             </div>
                         </div>
                     </div>
@@ -113,7 +119,7 @@ $i = 1;
                                                 name="email" id="email">
                                         </div>
 
-                                        <div class="mb-3 ShowIfGB d-none">
+                                        <div class="mb-3 ShowIfGB ShowIfTawkto d-none">
                                             <label for="phone" class="form-label">Phone Number</label>
                                             <input type="text" placeholder="Phone Number" class="form-control"
                                                 name="phone" id="phone">

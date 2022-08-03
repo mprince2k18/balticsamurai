@@ -46,7 +46,7 @@ $i = 1;
                 
                 <form action="search.php" method="GET">
                     <div class="row mt-4">
-                        <div class="col-md-6">
+                        <div class="col-md-4">
                             <div class="mb-3">
                                 <label for="source" class="form-label">Source</label>
                                 <select class="form-select" aria-label="Select Source" name="source" onchange="Source(value)">
@@ -58,10 +58,16 @@ $i = 1;
                                 </select>
                             </div>
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-4">
                             <div class="mb-3">
-                                <label for="date" class="form-label">Date & Time</label>
-                                <input type="date" class="form-control" name="date" id="date" value="<?php if(isset($_SESSION['date'])) { $_SESSION['date'] != null ? $_SESSION['date'] : null; } ?>">
+                                <label for="date" class="form-label">Date</label>
+                                <input type="date" class="form-control" name="date" id="date" value="<?php if(isset($_SESSION['date'])) { echo $_SESSION['date'] != null ? $_SESSION['date'] : null; } ?>">
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="mb-3">
+                                <label for="end_date" class="form-label">End Date</label>
+                                <input type="date" class="form-control" name="end_date" id="end_date" value="<?php if(isset($_SESSION['end_date'])) { echo $_SESSION['end_date'] != null ? $_SESSION['end_date'] : null; } ?>">
                             </div>
                         </div>
                     </div>
@@ -74,7 +80,11 @@ $i = 1;
                 <div class="mt-4">
                     <p>Searching for : <?php 
                         if(isset($_SESSION['source'])) { echo $_SESSION['source']; }
-                    ?> and <?php if(isset($_SESSION['date'])) { echo $_SESSION['date']; } ?></p>
+                    ?> 
+                    and  
+                    <?php if(isset($_SESSION['date'])) { echo $_SESSION['date']; } ?>
+                    and 
+                    <?php if(isset($_SESSION['end_date'])) { echo $_SESSION['end_date']; } ?></p>
                 </div>
 
 

@@ -112,10 +112,39 @@ class Controller
     public function search($inputData)
     {
         $date = $inputData['date'];
+        $end_date = $inputData['end_date'];
         $source = $inputData['source'];
         
         // multiple search
-        $disputeQuery = "SELECT * FROM informations WHERE source LIKE '%$source%'" . " AND date LIKE '%$date%'";
+
+        if ($source) {
+            $disputeQuery = "SELECT * FROM informations WHERE source LIKE '%$source%'";
+        }
+
+        if ($date) {
+            $disputeQuery = "SELECT * FROM informations WHERE date LIKE '%$date%'";
+        }
+
+        if ($end_date) {
+            $disputeQuery = "SELECT * FROM informations WHERE date LIKE '%$end_date%'";
+        }
+
+        if ($source && $date) {
+            $disputeQuery = "SELECT * FROM informations WHERE source LIKE '%$source%' AND date LIKE '%$date%'";
+        }
+
+        if ($source && $end_date) {
+            $disputeQuery = "SELECT * FROM informations WHERE source LIKE '%$source%' AND date LIKE '%$end_date%'";
+        }
+
+        if ($date && $end_date) {
+            $disputeQuery = "SELECT * FROM informations WHERE date LIKE '%$date%' AND date LIKE '%$end_date%'";
+        }
+
+        if ($source && $date && $end_date) {
+            $disputeQuery = "SELECT * FROM informations WHERE source LIKE '%$source%' AND date LIKE '%$date%' AND date LIKE '%$end_date%'";
+        }
+
         $result = $this->conn->query($disputeQuery);
         if($result){
             return $result->fetch_all();

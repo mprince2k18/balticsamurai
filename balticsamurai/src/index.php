@@ -30,9 +30,14 @@ $i = 1;
     <div class="container-fluid p-4">
 
         <div class="row">
-            <div class="col-md-12">
+            <div class="col-md-6">
                 <a href="index.php">
-                    <h1 class="text-center">Leads</h1>
+                    <h1 class="text-end">Leads</h1>
+                </a>
+            </div>
+            <div class="col-md-6">
+                <a href="twilio_recording.php">
+                    <h1 class="text-left">Twilio Recording</h1>
                 </a>
             </div>
 

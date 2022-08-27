@@ -3,7 +3,7 @@
 require 'db.php';
 include('../src/Controller.php');
 
-class Twilio {
+class Twilio { 
 
     /**
      * @var string
@@ -119,7 +119,7 @@ class Twilio {
     }
 }
 
-$twilio = new Twilio('ACb2d5a79f159e6683df085787d222e7b6', '03d18b4a11b717fe662cd763c8903b83');
+$twilio = new Twilio('ACb2d5a79f159e6683df085787d222e7b6', '1c8b722d8b1181382b3fe9e0b9eb07d6');
 $all_calls = json_decode($twilio->get_calls(), true);
 // $all_calls foreach loop in table
 

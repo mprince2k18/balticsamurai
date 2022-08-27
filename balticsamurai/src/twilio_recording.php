@@ -1,7 +1,34 @@
 <?php
 
 session_start();
-require '../Twilio.php';
+require '../db.php';
+
+$account_sid = 'ACb2d5a79f159e6683df085787d222e7b6';
+$auth_token = '1c8b722d8b1181382b3fe9e0b9eb07d6';
+
+$curl = curl_init();
+
+curl_setopt_array($curl, array(
+CURLOPT_URL => 'https://api.twilio.com/2010-04-01/Accounts/'. $account_sid .'/Calls.json',
+CURLOPT_RETURNTRANSFER => true,
+CURLOPT_ENCODING => '',
+CURLOPT_MAXREDIRS => 10,
+CURLOPT_TIMEOUT => 0,
+CURLOPT_FOLLOWLOCATION => true,
+CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+CURLOPT_CUSTOMREQUEST => 'GET',
+CURLOPT_HTTPHEADER => array(
+    "Content-Type: application/json",
+        "Authorization: Basic ".base64_encode($account_sid . ":" . $auth_token)
+    ),
+));
+
+$response = curl_exec($curl);
+
+curl_close($curl);
+echo $response;
+
+return false;
 
 ?>
 

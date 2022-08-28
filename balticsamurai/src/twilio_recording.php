@@ -1,7 +1,7 @@
 <?php
 
 session_start();
-require '../db.php';
+
 
 $account_sid = 'ACb2d5a79f159e6683df085787d222e7b6';
 $auth_token = '1c8b722d8b1181382b3fe9e0b9eb07d6';
@@ -26,9 +26,43 @@ CURLOPT_HTTPHEADER => array(
 $response = curl_exec($curl);
 
 curl_close($curl);
-echo $response;
 
-return false;
+// DATABASE CONNECTION
+
+$servername = "localhost";
+$username = "root";
+$password = "12345678";
+$dbname = "balticsamurai";
+
+// Create connection
+$conn = mysqli_connect($servername, $username, $password, $dbname);
+// Check connection
+if (!$conn) {
+  die("Connection failed: " . mysqli_connect_error());
+}
+
+$sql = "INSERT INTO twilio ('sid', 'status', 'date_updated', 'from', 'to')
+    VALUES ('sid','status', '12-12-12', '5464', '5454')";
+
+    if (mysqli_query($conn, $sql) === TRUE) {
+    echo "New record created successfully";
+    } else {
+    echo "Error: " . $sql . "<br>" . $conn->error;
+    }
+
+
+foreach (json_decode($response)->calls as $call) {
+    
+    $sid = $call->sid;
+    $status = $call->status;
+    $date_updated = $call->date_updated;
+    $from = $call->from;
+    $to = $call->to;
+
+    
+}
+
+$conn->close();
 
 ?>
 
